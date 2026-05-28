@@ -1,0 +1,45 @@
+name: Deploy Docs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/**"
+      - ".github/workflows/docs.yml"
+
+jobs:
+  deploy:
+    name: Build and deploy Vitepress docs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build docs
+        run: pnpm docs:build
+
+      # TODO: configure Cloudflare Pages credentials in repo secrets.
+      # Uncomment and fill in the following step after adding:
+      #   CLOUDFLARE_API_TOKEN secret
+      #   CLOUDFLARE_ACCOUNT_ID secret
+      #   Set projectName to your Cloudflare Pages project name.
+
+      # - name: Deploy to Cloudflare Pages
+      #   uses: cloudflare/pages-action@v1
+      #   with:
+      #     apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      #     accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      #     projectName: reliability-eval-docs
+      #     directory: docs/.vitepress/dist
+      #     gitHubToken: ${{ secrets.GITHUB_TOKEN }}
