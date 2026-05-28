@@ -25,7 +25,7 @@ export default defineConfig({
     socialLinks: [
       {
         icon: "github",
-        link: "https://github.com/TODO_GITHUB_USER/reliability-eval",
+        link: "https://github.com/ahmadRahman1993/reliability-eval",
       },
     ],
     footer: {

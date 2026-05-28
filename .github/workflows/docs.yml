@@ -29,17 +29,15 @@ jobs:
       - name: Build docs
         run: pnpm docs:build
 
-      # TODO: configure Cloudflare Pages credentials in repo secrets.
-      # Uncomment and fill in the following step after adding:
-      #   CLOUDFLARE_API_TOKEN secret
-      #   CLOUDFLARE_ACCOUNT_ID secret
-      #   Set projectName to your Cloudflare Pages project name.
+         CLOUDFLARE_API_TOKEN secret
+         CLOUDFLARE_ACCOUNT_ID secret
 
-      # - name: Deploy to Cloudflare Pages
-      #   uses: cloudflare/pages-action@v1
-      #   with:
-      #     apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-      #     accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-      #     projectName: reliability-eval-docs
-      #     directory: docs/.vitepress/dist
-      #     gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+        - name: Deploy to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: reliability-eval
+          directory: docs/.vitepress/dist
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+

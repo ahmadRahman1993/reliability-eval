@@ -7,7 +7,7 @@ Thanks for your interest. This guide covers setup, testing, and the release proc
 Requires Node >= 22 and pnpm.
 
 ```bash
-git clone https://github.com/TODO_GITHUB_USER/reliability-eval.git
+git clone https://github.com/ahmadRahman1993/reliability-eval.git
 cd reliability-eval
 pnpm install
 ```
