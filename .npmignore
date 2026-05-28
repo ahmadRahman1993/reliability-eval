@@ -1,0 +1,15 @@
+src/
+tests/
+scripts/
+examples/
+docs/
+.github/
+.changeset/
+*.config.ts
+tsconfig.json
+biome.json
+SPEC.md
+HANDOFF.md
+CONTRIBUTING.md
+coverage/
+node_modules/
