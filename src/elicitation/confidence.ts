@@ -21,7 +21,7 @@ export function defaultConfidenceElicitor(): ConfidenceElicitor {
 
       let confidence: number | null = null;
       if (confidenceMatch) {
-        const parsed = parseFloat(confidenceMatch[1] ?? "");
+        const parsed = Number.parseFloat(confidenceMatch[1] ?? "");
         if (Number.isFinite(parsed)) {
           confidence = Math.max(0, Math.min(1, parsed));
         }

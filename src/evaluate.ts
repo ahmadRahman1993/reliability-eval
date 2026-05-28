@@ -1,11 +1,6 @@
 import { defaultConfidenceElicitor } from "./elicitation/index.js";
 import { computeAccuracy, computeBrier, computeCalibration } from "./metrics/index.js";
-import type {
-  ConfidenceElicitor,
-  EvaluateOptions,
-  EvaluateResult,
-  ResultItem,
-} from "./types.js";
+import type { ConfidenceElicitor, EvaluateOptions, EvaluateResult, ResultItem } from "./types.js";
 
 async function runConcurrent<T>(
   tasks: Array<() => Promise<T>>,
@@ -19,15 +14,14 @@ async function runConcurrent<T>(
   async function worker(): Promise<void> {
     while (nextIndex < tasks.length) {
       const idx = nextIndex++;
-      results[idx] = await tasks[idx]!();
+      const task = tasks[idx];
+      if (task) results[idx] = await task();
       done++;
       onDone?.(done, tasks.length);
     }
   }
 
-  const workers = Array.from({ length: Math.min(concurrency, tasks.length) }, () =>
-    worker(),
-  );
+  const workers = Array.from({ length: Math.min(concurrency, tasks.length) }, () => worker());
   await Promise.all(workers);
   return results;
 }
@@ -56,8 +50,7 @@ export async function evaluate<TInput = string, TExpected = string>(
   const startMs = Date.now();
 
   const tasks = dataset.map((row) => async (): Promise<ResultItem> => {
-    const rawPrompt =
-      typeof row.input === "string" ? row.input : JSON.stringify(row.input);
+    const rawPrompt = typeof row.input === "string" ? row.input : JSON.stringify(row.input);
     const prompt = elicitor ? elicitor.buildPrompt(rawPrompt) : rawPrompt;
 
     const response = await provider.generate(prompt);

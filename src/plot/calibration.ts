@@ -52,8 +52,7 @@ export function plotCalibration(result: EvaluateResult, opts: PlotOptions = {}):
   const diagY2 = scaleY(1);
 
   // Points for each bin.
-  const pointRadius = (count: number) =>
-    Math.max(4, Math.min(12, 4 + (count / maxCount) * 8));
+  const pointRadius = (count: number) => Math.max(4, Math.min(12, 4 + (count / maxCount) * 8));
 
   const polylinePoints = bins
     .map((b) => `${scaleX(b.meanConfidence)},${scaleY(b.accuracy)}`)
@@ -69,8 +68,7 @@ export function plotCalibration(result: EvaluateResult, opts: PlotOptions = {}):
   });
 
   const ece = result.metrics.ece;
-  const brier =
-    result.metrics.brier !== null ? result.metrics.brier.toFixed(4) : "N/A";
+  const brier = result.metrics.brier !== null ? result.metrics.brier.toFixed(4) : "N/A";
 
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" style="font-family: system-ui, sans-serif; background: #fff;">
   <!-- Title -->

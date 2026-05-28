@@ -5,8 +5,7 @@ export function normalCdf(x: number): number {
   const t = 1 / (1 + 0.2316419 * Math.abs(x));
   const poly =
     t *
-    (0.319381530 +
-      t * (-0.356563782 + t * (1.781477937 + t * (-1.821255978 + t * 1.330274429))));
+    (0.31938153 + t * (-0.356563782 + t * (1.781477937 + t * (-1.821255978 + t * 1.330274429))));
   const pdf = Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI);
   const p = 1 - pdf * poly;
   return x >= 0 ? p : 1 - p;
@@ -76,13 +75,13 @@ function lgamma(x: number): number {
   if (x < 0.5) {
     return Math.log(Math.PI / Math.sin(Math.PI * x)) - lgamma(1 - x);
   }
-  x -= 1;
-  let a = c[0]!;
-  const t = x + g + 0.5;
+  const xm1 = x - 1;
+  let a = c[0] ?? 0;
+  const t = xm1 + g + 0.5;
   for (let i = 1; i < g + 2; i++) {
-    a += c[i]! / (x + i);
+    a += (c[i] ?? 0) / (xm1 + i);
   }
-  return 0.5 * Math.log(2 * Math.PI) + (x + 0.5) * Math.log(t) - t + Math.log(a);
+  return 0.5 * Math.log(2 * Math.PI) + (xm1 + 0.5) * Math.log(t) - t + Math.log(a);
 }
 
 // Two-sided t-distribution CDF: P(|T| <= |t|) is NOT what we want.

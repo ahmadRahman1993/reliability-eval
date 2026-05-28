@@ -15,8 +15,10 @@ export function computeCalibration(
     count: 0,
   }));
 
-  const binSums: Array<{ confSum: number; correctSum: number; count: number }> =
-    Array.from({ length: numBins }, () => ({ confSum: 0, correctSum: 0, count: 0 }));
+  const binSums: Array<{ confSum: number; correctSum: number; count: number }> = Array.from(
+    { length: numBins },
+    () => ({ confSum: 0, correctSum: 0, count: 0 }),
+  );
 
   for (const item of confident) {
     const conf = item.confidence as number;

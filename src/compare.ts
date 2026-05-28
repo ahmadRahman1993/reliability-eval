@@ -8,11 +8,7 @@ import type {
   EvaluateResult,
 } from "./types.js";
 
-export function compare(
-  a: EvaluateResult,
-  b: EvaluateResult,
-  opts: CompareOptions,
-): CompareResult {
+export function compare(a: EvaluateResult, b: EvaluateResult, opts: CompareOptions): CompareResult {
   return wilcoxonTest(a, b, opts);
 }
 

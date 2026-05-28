@@ -7,10 +7,11 @@ export function averageRanks(values: number[]): number[] {
   let i = 0;
   while (i < n) {
     let j = i;
-    while (j < n && indexed[j]!.v === indexed[i]!.v) j++;
+    while (j < n && indexed[j]?.v === indexed[i]?.v) j++;
     const avgRank = (i + 1 + j) / 2;
     for (let k = i; k < j; k++) {
-      ranks[indexed[k]!.i] = avgRank;
+      const entry = indexed[k];
+      if (entry !== undefined) ranks[entry.i] = avgRank;
     }
     i = j;
   }
@@ -25,7 +26,7 @@ export function tieCorrection(ranks: number[]): number {
   let correction = 0;
   for (const [, count] of counts) {
     if (count > 1) {
-      correction += (count * count * count - count) / 12;
+      correction += (count * count * count - count) / 48;
     }
   }
   return correction;
