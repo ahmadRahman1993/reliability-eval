@@ -3,6 +3,7 @@ import { defineConfig } from "vitepress";
 export default defineConfig({
   title: "reliability-eval",
   description: "Calibration-first LLM evaluation for Node/TypeScript",
+  sitemap: { hostname: "https://reliability-eval.pages.dev" },
   themeConfig: {
     nav: [
       { text: "Guide", link: "/guide/getting-started" },
