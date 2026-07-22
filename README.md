@@ -69,12 +69,12 @@ const svg = plotCalibration(resultA, { title: "My Model", width: 600, height: 60
 
 ## Docs
 
-Full documentation is in [docs/](docs/) and served locally with `pnpm docs:dev`.
+**[reliability-eval.pages.dev](https://reliability-eval.pages.dev)**
 
-- [Getting started](docs/guide/getting-started.md)
-- [What is calibration?](docs/guide/calibration.md)
-- [Comparing models](docs/guide/comparing-models.md)
-- [API reference](docs/api/index.md)
+- [Getting started](https://reliability-eval.pages.dev/guide/getting-started)
+- [What is calibration?](https://reliability-eval.pages.dev/guide/calibration)
+- [Comparing models](https://reliability-eval.pages.dev/guide/comparing-models)
+- [API reference](https://reliability-eval.pages.dev/api/)
 
 ---
 
